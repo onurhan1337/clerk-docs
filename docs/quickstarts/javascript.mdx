@@ -3,6 +3,8 @@ title: JavaScript Quickstart
 description: Add authentication and user management to your JavaScript app with Clerk.
 ---
 
+# JavaScript Quickstart
+
 <TutorialHero
   framework="javascript"
   exampleRepo={[
@@ -36,7 +38,7 @@ To add the [ClerkJS SDK](/docs/references/javascript/overview) to your JavaScrip
 
 Select your preferred method below to get started.
 
-<Tabs items={["NPM module", "<script>"]}>
+<Tabs type="npm-script" items={["NPM module", "<script>"]}>
   {/* NPM module tab */}
   <Tab>
     <Steps>
@@ -130,60 +132,57 @@ Select your preferred method below to get started.
 
       To get started, you will use:
 
-      - [`<SignIn />`](/docs/references/javascript/clerk/sign-in): renders a user interface for signing in.
-      - [`<UserButton />`](/docs/references/javascript/clerk/user-button): shows the avatar from the account the user is signed in with. When clicked, it opens a dropdown menu with options to sign out.
+      - [`<SignIn />`](/docs/components/authentication/sign-in): renders a user interface for signing in.
+      - [`<UserButton />`](/docs/components/user/user-button): shows the avatar from the account the user is signed in with. When clicked, it opens a dropdown menu with options to sign out.
 
-      <Tabs items={["index.js", "index.html"]}>
-        <Tab>
-          ```js filename="main.js"
-          import Clerk from "@clerk/clerk-js";
+      Your `main.js` file should look something like this:
 
-          const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+      ```js filename="main.js"
+      import Clerk from "@clerk/clerk-js";
 
-          const clerk = new Clerk(clerkPubKey);
-          await clerk.load();
+      const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-          if (clerk.user) {
-            document.getElementById("app").innerHTML = `
-              <div id="user-button"></div>
-            `;
+      const clerk = new Clerk(clerkPubKey);
+      await clerk.load();
 
-            const userButtonDiv =
-              document.getElementById("user-button");
+      if (clerk.user) {
+        document.getElementById("app").innerHTML = `
+          <div id="user-button"></div>
+        `;
 
-            clerk.mountUserButton(userButtonDiv);
-          } else {
-            document.getElementById("app").innerHTML = `
-              <div id="sign-in"></div>
-            `;
+        const userButtonDiv =
+          document.getElementById("user-button");
 
-            const signInDiv =
-              document.getElementById("sign-in");
+        clerk.mountUserButton(userButtonDiv);
+      } else {
+        document.getElementById("app").innerHTML = `
+          <div id="sign-in"></div>
+        `;
 
-            clerk.mountSignIn(signInDiv);
-          }
-          ```
-          </Tab>
+        const signInDiv =
+          document.getElementById("sign-in");
 
-          <Tab>
-          ```html filename="index.html"
-          <!doctype html>
-          <html lang="en">
-            <head>
-              <meta charset="UTF-8" />
-              <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <title>Vite App</title>
-            </head>
-            <body>
-              <div id="app"></div>
-              <script type="module" src="/main.js"></script>
-            </body>
-          </html>
-          ```
-          </Tab>
+        clerk.mountSignIn(signInDiv);
+      }
+      ```
 
-        </Tabs>
+      And your `index.html` file should look something like this:
+
+      ```html filename="index.html"
+      <!doctype html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Vite App</title>
+        </head>
+        <body>
+          <div id="app"></div>
+          <script type="module" src="/main.js"></script>
+        </body>
+      </html>
+      ```
     </Steps>
   </Tab>
 
@@ -194,8 +193,8 @@ Select your preferred method below to get started.
 
       This `<script>` tag will load the ClerkJS package from our CDN and initialize it with your Clerk **Publishable Key** and **Frontend API URL**. It should be placed before any other `<script>` tags that use ClerkJS.
 
-      1. Navigate to your [Clerk Dashboard](https://dashboard.clerk.com/last-active?path=api-keys).
-      2. Select your application, then select **🔑 API Keys** in the sidebar menu.
+      1. Navigate to the [Clerk Dashboard](https://dashboard.clerk.com/last-active?path=api-keys) and select your application.
+      2. In the navigation sidebar, select **API Keys**.
       3. In the **Quick Copy** section, select **JavaScript** from the dropdown menu.
       4. Copy the `<script>` tag and paste it into your HTML file.
 
@@ -239,8 +238,8 @@ Select your preferred method below to get started.
 
       To get started, you will use:
 
-      - [`<SignIn />`](/docs/references/javascript/clerk/sign-in): renders a user interface for signing in.
-      - [`<UserButton />`](/docs/references/javascript/clerk/user-button): shows the avatar from the account the user is signed in with. When clicked, it opens a dropdown menu with options to sign out.
+      - [`<SignIn />`](/docs/components/authentication/sign-in): renders a user interface for signing in.
+      - [`<UserButton />`](/docs/components/user/user-button): shows the avatar from the account the user is signed in with. When clicked, it opens a dropdown menu with options to sign out.
 
       <InjectKeys>
 
